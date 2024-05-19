@@ -1,0 +1,73 @@
+﻿@model ProductModel
+
+@{
+    Layout = "_Layout";
+    var title = "Update";
+    ViewData["Title"] = title;
+}
+
+<style>
+    .input-validation-error {
+        border-color: red;
+    }
+
+    .form-control::placeholder {
+        color: #888;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+</style>
+
+<h2 class="text-center">@title</h2>
+
+@if (ViewBag.Product == "Products updated Successfully")
+{
+    <p class="text-center" style="color:green">@ViewBag.Product</p>
+}
+
+<form id="updateForm" class="m-4 p-4 border rounded" method="post" asp-action="Update">
+    <input type="" asp-for="Id" /> <!-- Include the Id field as a hidden field to identify the record to update -->
+    <div class="form-group">
+        <label asp-for="Name">Product Name</label>
+        <input asp-for="Name" class="form-control" placeholder="Product name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <input asp-for="Description" class="form-control" placeholder="Description">
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for='Type'>Type</label>
+        <input asp-for="Type" class="form-control" placeholder="Product Type" />
+        <span asp-validation-for="Type" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for='Price'>Price</label>
+        <input asp-for="Price" class="form-control" placeholder="Product Price" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Status">Status</label>
+        <select asp-for="Status" class="form-control">
+            <option value="">Select</option>
+            <option value="Available">Available</option>
+            <option value="OutOfStock">OutOfStock</option>
+            <option value="Pending">Pending</option>
+
+        </select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
